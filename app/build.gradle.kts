@@ -128,6 +128,11 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.gson)
     implementation(libs.slf4j.simple)
+    implementation(libs.androidx.paging.runtime)
+    // alternatively - without Android dependencies for tests
+    testImplementation(libs.androidx.paging.common)
+    // optional - Jetpack Compose integration
+    implementation(libs.androidx.paging.compose)
 }
 
 // Allow references to generated code

@@ -24,6 +24,9 @@ mockito-inline-version = "3.3.3"
 mockito-kotlin-version = "5.2.1"
 navigation-compose-version = "2.8.2"
 okhttp-version = "4.9.0"
+paging-common-version = "3.3.2"
+paging-compose-version = "3.3.2"
+paging-runtime-version = "3.3.2"
 play-services-location-version = "21.3.0"
 protobuf-javalite-version = "3.18.0"
 retrofit-version = "2.11.0"
@@ -53,6 +56,9 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-material = { module = "androidx.compose.material:material", version.ref = "material-version" }
 androidx-material3 = { module = "androidx.compose.material3:material3" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose-version" }
+androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "paging-common-version" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging-compose-version" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging-runtime-version" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-compiler-version" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room-ktx-version" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "room-paging-version" }
