@@ -1,8 +1,11 @@
 package com.example.eventbookingapp.module
 
 import com.example.eventbookingapp.BuildConfig
+import com.example.eventbookingapp.model.service.EventService
+import com.example.eventbookingapp.repository.implementation.EventRepositoryImpl
 import com.example.eventbookingapp.repository.implementation.LocationRepositoryImpl
 import com.example.eventbookingapp.repository.implementation.TokenRepositoryImpl
+import com.example.eventbookingapp.repository.repository_interface.EventRepository
 import com.example.eventbookingapp.repository.repository_interface.LocationRepository
 import com.example.eventbookingapp.repository.repository_interface.TokenRepository
 import dagger.Module
@@ -15,7 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object LocalRepositoryModule {
+object RepositoryModule {
     @Provides
     @Singleton
     fun provideTokenRepository(): TokenRepository {
@@ -34,4 +37,10 @@ object LocalRepositoryModule {
     @Provides
     @Singleton
     fun provideLocationRepository(): LocationRepository = LocationRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideEventRepository(
+        eventService: EventService
+    ): EventRepository = EventRepositoryImpl(service = eventService)
 }

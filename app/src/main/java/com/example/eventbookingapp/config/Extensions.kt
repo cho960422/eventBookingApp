@@ -11,3 +11,6 @@ val Context.userDataStore by preferencesDataStore(
 val Context.locationDataStore by preferencesDataStore(
     name = LOCATION_PREFERENCES_KEY
 )
+val Context.searchOptionsDataStore by preferencesDataStore(
+    name = SEARCH_OPTIONS_PREFERENCES_KEY
+)

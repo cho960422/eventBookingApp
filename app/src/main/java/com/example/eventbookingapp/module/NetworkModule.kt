@@ -4,6 +4,7 @@ import com.example.eventbookingapp.EventBookingApplication
 import com.example.eventbookingapp.config.cacheSize
 import com.example.eventbookingapp.config.interceptors.AuthInterceptor
 import com.example.eventbookingapp.config.interceptors.LoggingInterceptor
+import com.example.eventbookingapp.model.service.EventService
 import com.example.eventbookingapp.repository.repository_interface.TokenRepository
 import dagger.Module
 import dagger.Provides
@@ -53,4 +54,8 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideEventService(retrofit: Retrofit): EventService = retrofit.create(EventService::class.java)
 }
