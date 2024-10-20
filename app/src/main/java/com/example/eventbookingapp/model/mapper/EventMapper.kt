@@ -1,9 +1,17 @@
 package com.example.eventbookingapp.model.mapper
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.eventbookingapp.model.dto.event.EventDetailDto
+import com.example.eventbookingapp.model.dto.event.EventListRoomEntity
+import com.example.eventbookingapp.model.dto.event.EventUserDto
 import com.example.eventbookingapp.model.dto.event.EventWriteDto
 import com.example.eventbookingapp.view.entities.event.EventDetailEntity
+import com.example.eventbookingapp.view.entities.event.EventLocationEntity
 import com.example.eventbookingapp.view.entities.event.EventWriteRequestEntity
+import com.example.eventbookingapp.view.entities.event.UserEntity
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 object EventMapper {
     fun convertEventWriteRequestToDto(entity: EventWriteRequestEntity): EventWriteDto {
@@ -28,6 +36,34 @@ object EventMapper {
             longitude,
             name,
             participants
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun eventDetailDtoToListRoomEntity(dto: EventDetailDto): EventListRoomEntity = with(dto) {
+        return EventListRoomEntity(
+            id = "",
+            author = eventUserDtoToEntity(author),
+            content = content,
+            location = EventLocationEntity(
+                latitude, longitude, locationName
+            ),
+            date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")),
+            capacity = capacity,
+            participants = participants,
+            false,
+            false
+        )
+    }
+
+    private fun contentDtoToEntity(content: String) :String {
+        return content
+    }
+
+    fun eventUserDtoToEntity(user: EventUserDto) : UserEntity {
+        return UserEntity(
+            user.id,
+            user.nickname
         )
     }
 }

@@ -88,9 +88,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
-    androidTestImplementation(libs.mockito.core.v333)
     androidTestImplementation(libs.mockito.android)
-    androidTestImplementation(libs.mockito.inline)
     testImplementation(libs.kotlinx.coroutines.test)
 
     // For Compose Navigation
@@ -112,7 +110,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     // optional - Paging 3 Integration
     implementation(libs.androidx.room.paging)
-    // test22222
 
     implementation(libs.retrofit)
     implementation(libs.androidx.navigation.compose)

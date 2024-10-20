@@ -1,5 +1,6 @@
 package com.example.eventbookingapp.model.service
 
+import com.example.eventbookingapp.model.dao.EventDao
 import com.example.eventbookingapp.model.dto.base.BaseResponse
 import com.example.eventbookingapp.model.dto.event.EventDetailDto
 import com.example.eventbookingapp.model.dto.event.EventWriteDto
@@ -15,6 +16,11 @@ interface EventService {
     suspend fun submitEvent(
         requestBody: EventWriteDto
     ): Response<BaseResponse<Any>>
+
+    @GET("/events")
+    suspend fun getEvents(
+
+    ): Response<BaseResponse<List<EventDetailDto>>>
 
     @GET("/events/{id}")
     suspend fun getSingleEvent(

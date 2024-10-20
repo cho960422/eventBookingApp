@@ -1,9 +1,11 @@
 package com.example.eventbookingapp.module
 
+import androidx.room.Room
 import com.example.eventbookingapp.EventBookingApplication
 import com.example.eventbookingapp.config.cacheSize
 import com.example.eventbookingapp.config.interceptors.AuthInterceptor
 import com.example.eventbookingapp.config.interceptors.LoggingInterceptor
+import com.example.eventbookingapp.model.AppDatabase
 import com.example.eventbookingapp.model.service.EventService
 import com.example.eventbookingapp.repository.repository_interface.TokenRepository
 import dagger.Module
@@ -58,4 +60,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideEventService(retrofit: Retrofit): EventService = retrofit.create(EventService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(): AppDatabase =
+        Room.databaseBuilder(
+            EventBookingApplication.applicationContext(),
+            AppDatabase::class.java, "lems-database"
+        )
+            .build()
 }
