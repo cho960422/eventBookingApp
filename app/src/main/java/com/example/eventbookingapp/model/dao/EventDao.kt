@@ -14,6 +14,6 @@ interface EventDao {
     @Query("DELETE FROM events")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM events")
-    suspend fun getEventList(): List<EventListRoomEntity>
+    @Query("SELECT * FROM events WHERE content LIKE :query LIMIT 30 OFFSET :start")
+    suspend fun getEventList(query: String, start: Int): List<EventListRoomEntity>
 }

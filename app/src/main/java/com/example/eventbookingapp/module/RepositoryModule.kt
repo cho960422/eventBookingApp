@@ -1,6 +1,7 @@
 package com.example.eventbookingapp.module
 
 import com.example.eventbookingapp.BuildConfig
+import com.example.eventbookingapp.model.AppDatabase
 import com.example.eventbookingapp.model.service.EventService
 import com.example.eventbookingapp.repository.implementation.EventRepositoryImpl
 import com.example.eventbookingapp.repository.implementation.LocationRepositoryImpl
@@ -41,6 +42,7 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideEventRepository(
-        eventService: EventService
-    ): EventRepository = EventRepositoryImpl(service = eventService)
+        eventService: EventService,
+        db: AppDatabase
+    ): EventRepository = EventRepositoryImpl(service = eventService, db = db)
 }
