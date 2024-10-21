@@ -2,14 +2,23 @@ package com.example.eventbookingapp.repository.implementation
 
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import com.example.eventbookingapp.EventBookingApplication
 import com.example.eventbookingapp.config.categoryKey
 import com.example.eventbookingapp.config.locationDataStore
 import com.example.eventbookingapp.config.searchOptionsDataStore
 import com.example.eventbookingapp.config.sortByKey
+import com.example.eventbookingapp.model.AppDatabase
 import com.example.eventbookingapp.model.dto.event.EventDetailDto
+import com.example.eventbookingapp.model.dto.event.EventListRoomEntity
 import com.example.eventbookingapp.model.dto.event.EventWriteDto
 import com.example.eventbookingapp.model.service.EventService
+import com.example.eventbookingapp.repository.paging_source.HomeEventPagingSource
+import com.example.eventbookingapp.repository.remote_mediator.HomeEventRemoteMediator
 import com.example.eventbookingapp.repository.repository_interface.EventRepository
 import com.example.eventbookingapp.view.entities.event.SearchOptions
 import kotlinx.coroutines.CoroutineDispatcher
@@ -23,6 +32,7 @@ import javax.inject.Inject
 
 class EventRepositoryImpl @Inject constructor(
     private val service: EventService,
+    private val db: AppDatabase,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ): EventRepository {
     private val context = EventBookingApplication.applicationContext()
@@ -89,5 +99,17 @@ class EventRepositoryImpl @Inject constructor(
                 emit(obj)
             }
         }
+    }
+
+    @OptIn(ExperimentalPagingApi::class)
+    override fun getEventList(query:String): Flow<PagingData<EventListRoomEntity>> {
+        val pager = Pager(
+            config = PagingConfig(pageSize = 30),
+            remoteMediator = HomeEventRemoteMediator(service, db, query)
+        ) {
+            HomeEventPagingSource(db, query)
+        }
+
+        return pager.flow
     }
 }

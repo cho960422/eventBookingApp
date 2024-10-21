@@ -8,6 +8,7 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
 import com.example.eventbookingapp.model.AppDatabase
+import com.example.eventbookingapp.model.dto.event.EventListRoomEntity
 import com.example.eventbookingapp.model.mapper.EventMapper
 import com.example.eventbookingapp.model.service.EventService
 import com.example.eventbookingapp.view.entities.event.EventListEntity
@@ -20,11 +21,11 @@ class HomeEventRemoteMediator @Inject constructor(
     private val eventService: EventService,
     private val db: AppDatabase,
     private val query: String
-): RemoteMediator<String, EventListEntity>() {
+): RemoteMediator<Int, EventListRoomEntity>() {
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<String, EventListEntity>
+        state: PagingState<Int, EventListRoomEntity>
     ): MediatorResult {
         return try {
             val storage = db.eventDao()

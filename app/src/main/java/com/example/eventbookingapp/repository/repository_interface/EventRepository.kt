@@ -1,6 +1,10 @@
 package com.example.eventbookingapp.repository.repository_interface
 
+import androidx.paging.Pager
+import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import com.example.eventbookingapp.model.dto.event.EventDetailDto
+import com.example.eventbookingapp.model.dto.event.EventListRoomEntity
 import com.example.eventbookingapp.model.dto.event.EventWriteDto
 import com.example.eventbookingapp.view.entities.event.EventDetailEntity
 import com.example.eventbookingapp.view.entities.event.EventWriteRequestEntity
@@ -15,4 +19,5 @@ interface EventRepository {
     suspend fun editCategoryOptions(category: Int)
     suspend fun editSortOptions(sortBy: Int)
     fun getSearchOptions(): Flow<SearchOptions>
+    fun getEventList(query: String): Flow<PagingData<EventListRoomEntity>>
 }

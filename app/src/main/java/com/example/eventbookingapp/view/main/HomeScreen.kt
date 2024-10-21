@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.eventbookingapp.config.defaultPadding
 import com.example.eventbookingapp.ui.theme.BackgroundGray
 import com.example.eventbookingapp.view.main.components.HomeSearchBar
@@ -33,8 +34,9 @@ import com.example.eventbookingapp.view.main.components.LoginIcon
 import com.example.eventbookingapp.view.main.components.SettingBottomSheet
 import com.example.eventbookingapp.view.main.viewmodel.HomeScreenViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun HomeScreen(
     client: FusedLocationProviderClient,
@@ -49,6 +51,7 @@ fun HomeScreen(
         val context: Context = LocalContext.current
         val activity = context as? ComponentActivity
         val currentLocation = viewModel.currentLocation.collectAsState()
+        val pagingData = viewModel.pagingDataFlow.collectAsLazyPagingItems()
         var showSettingSheet by remember {
             mutableStateOf(false)
         }
@@ -92,7 +95,14 @@ fun HomeScreen(
             } // 상단 Top Bar
 
             LazyColumn {
+                items(
+                    count = pagingData.itemCount,
+                    key = {
+                        pagingData[it]?.id ?: 0
+                    }
+                ) {
 
+                }
             }
         }
     }
