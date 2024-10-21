@@ -4,6 +4,9 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.sharp.Add
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -70,6 +73,13 @@ fun MainScreen(
                         }
                     )
                 }
+            }
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { /*TODO*/ }
+            ) {
+                Icon(imageVector = Icons.Sharp.Add, contentDescription = "추가 버튼")
             }
         }
     ) { defaultPadding ->
