@@ -1,5 +1,6 @@
 [versions]
 android-version = "2.11.9"
+compiler-version = "1.1.1"
 compose-bom-version = "2024.09.03"
 converter-gson-version = "2.9.0"
 datastore-preferences-version = "1.1.1"

@@ -13,6 +13,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinPluginSerialization)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -105,7 +106,7 @@ dependencies {
 
     // For Room
     implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     // Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
     // optional - Paging 3 Integration
