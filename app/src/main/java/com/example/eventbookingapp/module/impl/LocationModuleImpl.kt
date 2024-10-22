@@ -9,7 +9,6 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import com.example.eventbookingapp.EventBookingApplication
 import com.example.eventbookingapp.config.exceptions.NotFoundPermissionException
-import com.example.eventbookingapp.config.logger
 import com.example.eventbookingapp.module.LocationModuleInterface
 import com.example.eventbookingapp.repository.repository_interface.LocationRepository
 import com.google.android.gms.location.FusedLocationProviderClient

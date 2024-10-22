@@ -2,8 +2,10 @@ package com.example.eventbookingapp.view.main
 
 import android.Manifest
 import android.content.Context
+import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.result.ActivityResultLauncher
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -29,13 +31,19 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.eventbookingapp.config.defaultPadding
 import com.example.eventbookingapp.ui.theme.BackgroundGray
+import com.example.eventbookingapp.view.entities.event.EventListEntity
+import com.example.eventbookingapp.view.entities.event.EventLocationEntity
+import com.example.eventbookingapp.view.entities.event.UserEntity
+import com.example.eventbookingapp.view.main.components.EventListComponent
 import com.example.eventbookingapp.view.main.components.HomeSearchBar
 import com.example.eventbookingapp.view.main.components.LoginIcon
 import com.example.eventbookingapp.view.main.components.SettingBottomSheet
 import com.example.eventbookingapp.view.main.viewmodel.HomeScreenViewModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import java.time.LocalDateTime
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun HomeScreen(
@@ -55,6 +63,9 @@ fun HomeScreen(
         var showSettingSheet by remember {
             mutableStateOf(false)
         }
+
+        val bookmarkLoadingMap = viewModel.bookmarkLoadingMap.value
+        val joinLoadingMap = viewModel.joinLoadingMap.value
 
         // 바텀시트가 열려지는 상태라면 바텀시트 생성
         if (showSettingSheet) {
@@ -95,6 +106,29 @@ fun HomeScreen(
             } // 상단 Top Bar
 
             LazyColumn {
+                item {
+                    EventListComponent(
+                        modifier = Modifier.fillMaxWidth(),
+                        eventListEntity = EventListEntity(
+                            id = "id",
+                            author = UserEntity("id", "조현국"),
+                            content = "내용내용\n\n\n\nddd",
+                            location = EventLocationEntity(
+                                latitude = 1.0,
+                                longitude = 1.0,
+                                name = "우리집"
+                            ),
+                            date = LocalDateTime.now(),
+                            createAt = LocalDateTime.now(),
+                            capacity = 30,
+                            participants = 1,
+                            bookMarkFlag = false,
+                            joinFlag = false
+                        ),
+                        bookmarkLoading = true,
+                        joinLoading = true
+                    )
+                }
                 items(
                     count = pagingData.itemCount,
                     key = {

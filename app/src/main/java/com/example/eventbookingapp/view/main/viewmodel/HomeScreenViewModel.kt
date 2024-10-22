@@ -2,7 +2,11 @@ package com.example.eventbookingapp.view.main.viewmodel
 
 import android.location.Location
 import androidx.activity.ComponentActivity
+import androidx.compose.runtime.State
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.snapshots.SnapshotStateMap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -32,6 +36,7 @@ import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import okhttp3.internal.toImmutableMap
 import javax.inject.Inject
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -48,6 +53,13 @@ class HomeScreenViewModel @Inject constructor(
     val pagingDataFlow: Flow<PagingData<EventListRoomEntity>>; // Screen 이벤트 목록이 참조하는 flow
     val uiActionFlow = MutableSharedFlow<UiAction>()
     val accept: (UiAction) -> Unit
+    private val _bookmarkLoadingMap = mutableStateMapOf<String, Boolean>() // 로딩 값 변경은 ViewModel에 한정될 수 있음
+    val bookmarkLoadingMap: State<Map<String, Boolean>>
+        get() = derivedStateOf { _bookmarkLoadingMap } // public으로 보여주는 값은 value 설정이 불가능한 Map으로 변경
+
+    private val _joinLoadingMap = mutableStateMapOf<String, Boolean>() // 로딩 값 변경은 ViewModel에 한정될 수 있음
+    val joinLoadingMap: State<Map<String, Boolean>>
+        get() = derivedStateOf { _joinLoadingMap } // public으로 보여주는 값은 value 설정이 불가능한 Map으로 변경
 
     init {
         getSearchOptions()
