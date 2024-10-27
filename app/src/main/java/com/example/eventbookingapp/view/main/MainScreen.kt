@@ -25,6 +25,8 @@ import com.example.eventbookingapp.R
 import com.example.eventbookingapp.ScreenRouter
 import com.example.eventbookingapp.view.main.components.BottomNavIcon
 import com.google.android.gms.location.FusedLocationProviderClient
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
 
 @Composable
 fun MainScreen(

@@ -1,4 +1,4 @@
-package com.example.eventbookingapp.presentation
+package com.example.eventbookingapp.presentation.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
