@@ -125,6 +125,8 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.gson)
     implementation(libs.slf4j.simple)
+    implementation("com.kakao.maps.open:android:2.11.9")
+    implementation("androidx.compose.material3:material3:1.3.0")
 }
 
 // Allow references to generated code
