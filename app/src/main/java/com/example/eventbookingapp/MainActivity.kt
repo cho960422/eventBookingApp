@@ -10,15 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.eventbookingapp.config.exceptions.IllegalPermissionException
 import com.example.eventbookingapp.config.exceptions.NotFoundPermissionException
-import com.example.eventbookingapp.module.LocationModuleInterface
-import com.example.eventbookingapp.view.main.MainScreen
+import com.example.eventbookingapp.di.LocationModuleInterface
+import com.example.eventbookingapp.presentation.main.MainScreen
 import com.example.eventbookingapp.ui.theme.EventBookingAppTheme
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.serialization.Serializable
 import javax.inject.Inject
 
 // Hilt 사용 Annotation

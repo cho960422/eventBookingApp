@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.targets.js.npm.importedPackageDir
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -14,6 +13,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinPluginSerialization)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -89,6 +89,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.kotlin)
+    androidTestImplementation(libs.mockito.android)
+    testImplementation(libs.kotlinx.coroutines.test)
 
     // For Compose Navigation
     implementation(libs.androidx.navigation.compose)
@@ -104,12 +106,11 @@ dependencies {
 
     // For Room
     implementation(libs.androidx.room.runtime)
-    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     // Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
     // optional - Paging 3 Integration
     implementation(libs.androidx.room.paging)
-    // test22222
 
     implementation(libs.retrofit)
     implementation(libs.androidx.navigation.compose)
@@ -125,6 +126,12 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.gson)
     implementation(libs.slf4j.simple)
+    implementation(libs.androidx.paging.runtime)
+    // alternatively - without Android dependencies for tests
+    testImplementation(libs.androidx.paging.common)
+    // optional - Jetpack Compose integration
+    implementation(libs.androidx.paging.compose)
+    implementation(libs.android)
 }
 
 // Allow references to generated code

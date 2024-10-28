@@ -1,7 +1,6 @@
 package com.example.eventbookingapp.config.interceptors
 
 import android.util.Log
-import com.example.eventbookingapp.config.logger
 import okhttp3.Interceptor
 import okhttp3.Response
 

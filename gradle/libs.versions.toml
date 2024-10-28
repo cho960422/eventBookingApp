@@ -1,5 +1,6 @@
 [versions]
 android-version = "2.11.9"
+compiler-version = "1.1.1"
 compose-bom-version = "2024.09.03"
 converter-gson-version = "2.9.0"
 datastore-preferences-version = "1.1.1"
@@ -24,7 +25,11 @@ mockito-inline-version = "3.3.3"
 mockito-kotlin-version = "5.2.1"
 navigation-compose-version = "2.8.2"
 okhttp-version = "4.9.0"
+paging-common-version = "3.3.2"
+paging-compose-version = "3.3.2"
+paging-runtime-version = "3.3.2"
 play-services-location-version = "21.3.0"
+protobuf-javalite-version = "3.18.0"
 retrofit-version = "2.11.0"
 room-compiler-version = "2.6.1"
 room-ktx-version = "2.6.1"
@@ -37,11 +42,16 @@ androidx-lifecycle-version = "2.8.6"
 activity-compose-version = "1.9.2"
 slf4j-api-version = "1.7.30"
 slf4j-simple-version = "2.0.3"
+agp-version = "8.5.2"
+kotlin-version = "1.9.25"
+appcompat-version = "1.7.0"
+material = "1.12.0"
 
 [libraries]
 android = { module = "com.kakao.maps.open:android", version.ref = "android-version" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom-version" }
 androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-version"}
+androidx-datastore-core = { module = "androidx.datastore:datastore-core", version.ref = "datastore-preferences-version" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore-preferences-version" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core-version" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose-version" }
@@ -51,6 +61,9 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-material = { module = "androidx.compose.material:material", version.ref = "material-version" }
 androidx-material3 = { module = "androidx.compose.material3:material3" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose-version" }
+androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "paging-common-version" }
+androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "paging-compose-version" }
+androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging-runtime-version" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "room-compiler-version" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room-ktx-version" }
 androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "room-paging-version" }
@@ -65,7 +78,6 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 gson = { module = "com.google.code.gson:gson", version.ref = "gson-version" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt-android-version" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt-android-compiler-version" }
-hilt-android-compiler-v2511 = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt-android-compiler" }
 hilt-android-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt-android-testing-version" }
 junit = { module = "junit:junit", version.ref = "junit-version" }
 kotlin-logging-jvm = { module = "io.github.microutils:kotlin-logging-jvm", version.ref = "kotlin-logging-jvm-version" }
@@ -73,14 +85,16 @@ kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-t
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization-json-version" }
 mockito-android = { module = "org.mockito:mockito-android", version.ref = "mockito-android-version" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito-core-version" }
-mockito-core-v333 = { module = "org.mockito:mockito-core", version.ref = "mockito-core" }
 mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockito-inline-version" }
 mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockito-kotlin-version" }
 okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp-version" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "play-services-location-version" }
+protobuf-javalite = { module = "com.google.protobuf:protobuf-javalite", version.ref = "protobuf-javalite-version" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit-version" }
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j-api-version" }
 slf4j-simple = { module = "org.slf4j:slf4j-simple", version.ref = "slf4j-simple-version" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat-version" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
 [plugins]
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
@@ -88,3 +102,6 @@ jetbrainsKotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.seriali
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 ksp = { id = "com.google.devtools.ksp", version = "2.0.0-1.0.23" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version = "2.51.1" }
+android-application = { id = "com.android.application", version.ref = "agp-version" }
+jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin-version" }
+android-library = { id = "com.android.library", version.ref = "agp-version" }
