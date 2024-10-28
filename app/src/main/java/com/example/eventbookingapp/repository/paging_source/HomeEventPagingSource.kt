@@ -2,8 +2,8 @@ package com.example.eventbookingapp.repository.paging_source
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.eventbookingapp.model.AppDatabase
-import com.example.eventbookingapp.model.dto.event.EventListRoomEntity
+import com.example.eventbookingapp.data.AppDatabase
+import com.example.eventbookingapp.data.dto.event.EventListRoomEntity
 import javax.inject.Inject
 
 class HomeEventPagingSource @Inject constructor(

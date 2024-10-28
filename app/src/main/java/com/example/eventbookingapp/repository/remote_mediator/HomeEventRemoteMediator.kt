@@ -7,11 +7,10 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.example.eventbookingapp.model.AppDatabase
-import com.example.eventbookingapp.model.dto.event.EventListRoomEntity
-import com.example.eventbookingapp.model.mapper.EventMapper
-import com.example.eventbookingapp.model.service.EventService
-import com.example.eventbookingapp.view.entities.event.EventListEntity
+import com.example.eventbookingapp.data.AppDatabase
+import com.example.eventbookingapp.data.dto.event.EventListRoomEntity
+import com.example.eventbookingapp.domain.mapper.EventMapper
+import com.example.eventbookingapp.data.remote.EventService
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
