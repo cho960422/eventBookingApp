@@ -1,4 +1,4 @@
-package com.example.eventbookingapp.domain.entities.event
+package com.example.domain.entities.event
 
 // TODO() 비즈니스 로직에 맞게 커스텀하기
 

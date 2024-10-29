@@ -1,6 +1,5 @@
-package com.example.eventbookingapp.domain.entities.event
+package com.example.domain.entities.event
 
-import android.location.Location
 import kotlinx.serialization.Serializable
 
 @Serializable

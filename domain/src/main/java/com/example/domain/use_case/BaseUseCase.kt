@@ -1,4 +1,4 @@
-package com.example.eventbookingapp.domain.use_case
+package com.example.domain.use_case
 
 import com.example.eventbookingapp.EXCEPTION
 import com.example.eventbookingapp.IssueError

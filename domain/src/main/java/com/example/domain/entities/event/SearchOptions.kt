@@ -1,4 +1,4 @@
-package com.example.eventbookingapp.domain.entities.event
+package com.example.domain.entities.event
 
 data class SearchOptions(
     val category: Int?,

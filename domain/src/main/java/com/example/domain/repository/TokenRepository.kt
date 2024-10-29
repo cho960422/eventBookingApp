@@ -1,4 +1,4 @@
-package com.example.eventbookingapp.repository.repository_interface
+package com.example.domain.repository
 
 interface TokenRepository {
     suspend fun getToken(): String

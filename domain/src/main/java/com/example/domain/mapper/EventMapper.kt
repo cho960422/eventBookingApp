@@ -1,21 +1,21 @@
-package com.example.eventbookingapp.domain.mapper
+package com.example.domain.mapper
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.eventbookingapp.data.dto.event.EventDetailDto
-import com.example.eventbookingapp.data.dto.event.EventListRoomEntity
-import com.example.eventbookingapp.data.dto.event.EventUserDto
-import com.example.eventbookingapp.data.dto.event.EventWriteDto
-import com.example.eventbookingapp.domain.entities.event.EventDetailEntity
-import com.example.eventbookingapp.domain.entities.event.EventLocationEntity
-import com.example.eventbookingapp.domain.entities.event.EventWriteRequestEntity
-import com.example.eventbookingapp.domain.entities.event.UserEntity
+import com.example.data.dto.event.EventDetailDto
+import com.example.data.dto.event.EventListRoomEntity
+import com.example.data.dto.event.EventUserDto
+import com.example.data.dto.event.EventWriteDto
+import com.example.domain.entities.event.EventDetailEntity
+import com.example.domain.entities.event.EventLocationEntity
+import com.example.domain.entities.event.EventWriteRequestEntity
+import com.example.domain.entities.event.UserEntity
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object EventMapper {
-    fun convertEventWriteRequestToDto(entity: EventWriteRequestEntity): EventWriteDto {
-        return EventWriteDto(
+    fun convertEventWriteRequestToDto(entity: EventWriteRequestEntity): com.example.data.dto.event.EventWriteDto {
+        return com.example.data.dto.event.EventWriteDto(
             entity.name,
             entity.categoryName,
             entity.locationName,
@@ -27,7 +27,7 @@ object EventMapper {
         )
     }
 
-    fun eventDetailDtoToEntity(dto: EventDetailDto): EventDetailEntity = with(dto) {
+    fun eventDetailDtoToEntity(dto: com.example.data.dto.event.EventDetailDto): EventDetailEntity = with(dto) {
         return EventDetailEntity(
             capacity,
             date,
@@ -40,8 +40,8 @@ object EventMapper {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun eventDetailDtoToListRoomEntity(dto: EventDetailDto): EventListRoomEntity = with(dto) {
-        return EventListRoomEntity(
+    fun eventDetailDtoToListRoomEntity(dto: com.example.data.dto.event.EventDetailDto): com.example.data.dto.event.EventListRoomEntity = with(dto) {
+        return com.example.data.dto.event.EventListRoomEntity(
             id = "",
             author = eventUserDtoToEntity(author),
             content = content,
@@ -60,7 +60,7 @@ object EventMapper {
         return content
     }
 
-    fun eventUserDtoToEntity(user: EventUserDto) : UserEntity {
+    fun eventUserDtoToEntity(user: com.example.data.dto.event.EventUserDto) : UserEntity {
         return UserEntity(
             user.id,
             user.nickname
