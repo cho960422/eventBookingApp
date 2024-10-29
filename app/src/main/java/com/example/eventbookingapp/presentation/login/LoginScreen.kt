@@ -1,5 +1,6 @@
 package com.example.eventbookingapp.presentation.login
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -27,10 +28,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-
+import androidx.navigation.NavController
+import com.example.eventbookingapp.presentation.login.components.ApiLoginButton
 
 @Composable
-fun LoginUI(kakaoClick: () -> Unit, naverClick: () -> Unit, googleClick: () -> Unit) {
+fun LoginUI(navController: NavController) {
     var idText by remember { mutableStateOf("") }
     var pwText by remember { mutableStateOf("") }
     Column(
@@ -53,12 +55,8 @@ fun LoginUI(kakaoClick: () -> Unit, naverClick: () -> Unit, googleClick: () -> U
             value = idText,
             modifier = Modifier.fillMaxWidth(),
             onValueChange = { idText = it },
-            label = {
-                Text(text = "아이디")
-            },
-            placeholder = {
-                Text("아이디를 입력하세요")
-            }
+            label = { Text(text = "아이디") },
+            placeholder = { Text("아이디를 입력하세요") }
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -66,12 +64,8 @@ fun LoginUI(kakaoClick: () -> Unit, naverClick: () -> Unit, googleClick: () -> U
             value = pwText,
             modifier = Modifier.fillMaxWidth(),
             onValueChange = { pwText = it },
-            label = {
-                Text(text = "비밀번호")
-            },
-            placeholder = {
-                Text(text = "비밀번호를 입력하세요")
-            },
+            label = { Text(text = "비밀번호") },
+            placeholder = { Text(text = "비밀번호를 입력하세요") },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             visualTransformation = PasswordVisualTransformation()
         )
@@ -86,36 +80,23 @@ fun LoginUI(kakaoClick: () -> Unit, naverClick: () -> Unit, googleClick: () -> U
             Text(text = "로그인")
         }
         Spacer(modifier = Modifier.height(24.dp))
-        Text(text = "회원가입")
+        Text(text = "회원가입", Modifier.clickable(onClick = {navController.navigate("signup")}))
         Spacer(modifier = Modifier.height(56.dp))
+
         Text(text = "SNS 로그인")
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedButton(
-            onClick = googleClick,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(20.dp)
-        ) {
-            Text(text = "카카오로 로그인")
-        }
+
+        ApiLoginButton(text = "카카오로 로그인", onClick = ::kakaoLogin)
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedButton(
-            onClick = naverClick,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(20.dp)
-        ) {
-            Text(text = "Naver로 로그인")
-        }
+
+        ApiLoginButton(text = "Naver로 로그인", onClick = ::naverLogin)
         Spacer(modifier = Modifier.height(16.dp))
-        OutlinedButton(
-            onClick = googleClick,
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(20.dp)
-        ) {
-            Text(text = "Google로 로그인")
-        }
+
+        ApiLoginButton(text = "Google로 로그인", onClick = ::googleLogin)
     }
 }
 
+// 각각의 로그인 버튼 클릭 리스너 구현
 private fun kakaoLogin() {
     // Todo : 카카오 로그인 구현
 }

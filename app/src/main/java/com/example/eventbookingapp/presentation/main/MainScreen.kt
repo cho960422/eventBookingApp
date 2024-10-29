@@ -1,6 +1,8 @@
 package com.example.eventbookingapp.presentation.main
 
+import android.os.Build
 import androidx.activity.result.ActivityResultLauncher
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -14,6 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -30,11 +33,13 @@ import com.example.eventbookingapp.presentation.main.components.BottomNavIcon
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun MainScreen(
     client: FusedLocationProviderClient,
-    locationPermissionLauncher: ActivityResultLauncher<Array<String>>
+    locationPermissionLauncher: ActivityResultLauncher<Array<String>>,
+    mainNavController: NavController
 ) {
     val bottomNavController = rememberNavController()
 
@@ -93,7 +98,7 @@ fun MainScreen(
             startDestination = HomeScreenRoute
         ) {
             composable<HomeScreenRoute> {
-                HomeScreen(client = client, locationPermissionLauncher = locationPermissionLauncher)
+                HomeScreen(client = client, locationPermissionLauncher = locationPermissionLauncher, mainNavController = mainNavController)
             }
             composable<MapScreenRoute> {
                 MapScreen()
