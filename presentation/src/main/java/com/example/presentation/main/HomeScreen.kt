@@ -1,6 +1,5 @@
-package com.example.presentation.main
+package com.example.eventbookingapp.presentation.main
 
-import android.Manifest
 import android.content.Context
 import android.os.Build
 import androidx.activity.ComponentActivity
@@ -12,13 +11,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material3.Button
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -28,17 +22,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.example.eventbookingapp.config.defaultPadding
-import com.example.eventbookingapp.ui.theme.BackgroundGray
 import com.example.eventbookingapp.domain.entities.event.EventListEntity
 import com.example.eventbookingapp.domain.entities.event.EventLocationEntity
 import com.example.eventbookingapp.domain.entities.event.UserEntity
-import com.example.presentation.main.components.EventListComponent
-import com.example.presentation.main.components.HomeSearchBar
-import com.example.presentation.main.components.LoginIcon
-import com.example.presentation.main.components.SettingBottomSheet
-import com.example.presentation.main.viewmodel.HomeScreenViewModel
+import com.example.eventbookingapp.presentation.main.components.EventListComponent
+import com.example.eventbookingapp.presentation.main.components.HomeSearchBar
+import com.example.eventbookingapp.presentation.main.components.LoginIcon
+import com.example.eventbookingapp.presentation.main.components.SettingBottomSheet
+import com.example.eventbookingapp.presentation.main.viewmodel.HomeScreenViewModel
+import com.example.eventbookingapp.ui.theme.BackgroundGray
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import java.time.LocalDateTime
@@ -49,6 +44,7 @@ import java.time.LocalDateTime
 fun HomeScreen(
     client: FusedLocationProviderClient,
     locationPermissionLauncher: ActivityResultLauncher<Array<String>>,
+    mainNavController: NavController,
     viewModel: HomeScreenViewModel = hiltViewModel()
 ) {
     Scaffold(
@@ -89,8 +85,7 @@ fun HomeScreen(
                         .padding(
                             vertical = defaultPadding
                         )
-                        .padding(start = defaultPadding)
-                    ,
+                        .padding(start = defaultPadding),
                     query = "", // 현재 검색창 입력값
                     onFilterTriggered = {
                         showSettingSheet = true
@@ -99,10 +94,10 @@ fun HomeScreen(
                     onSearchTriggered = {} // 검색 액션 시 콜백
                 ) // 검색 바
                 LoginIcon(
-                    modifier = Modifier.padding(defaultPadding / 2)
-                ) {
-
-                } // 로그인 또는 사용자 정보 아이콘
+                    modifier = Modifier.padding(defaultPadding / 2),
+                    onClicked = { mainNavController.navigate("login") }
+                )
+                // 로그인 또는 사용자 정보 아이콘
             } // 상단 Top Bar
 
             LazyColumn {

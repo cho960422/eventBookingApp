@@ -39,13 +39,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.eventbookingapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun Signup() {
-    val context = LocalContext.current
+fun Signup(navController: NavController) {
     var nickname by rememberSaveable { mutableStateOf("") }
     var email by rememberSaveable { mutableStateOf("") }
     var pw1 by rememberSaveable { mutableStateOf("") }
@@ -62,8 +61,7 @@ fun Signup() {
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            // Todo : 뒤로 가기 기능 구현
-                            Toast.makeText(context, "뒤로 가기", Toast.LENGTH_SHORT).show()
+                            navController.popBackStack()
                         }
                     ) {
                         Icon(

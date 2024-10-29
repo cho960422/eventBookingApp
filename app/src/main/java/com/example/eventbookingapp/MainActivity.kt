@@ -1,10 +1,12 @@
 package com.example.eventbookingapp
 
 import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
@@ -12,7 +14,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.eventbookingapp.config.exceptions.NotFoundPermissionException
 import com.example.eventbookingapp.di.LocationModuleInterface
-import com.example.presentation.main.MainScreen
+import com.example.eventbookingapp.presentation.login.LoginUI
+import com.example.eventbookingapp.presentation.main.MainScreen
+import com.example.eventbookingapp.presentation.signup.Signup
 import com.example.eventbookingapp.ui.theme.EventBookingAppTheme
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -45,6 +49,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -63,10 +68,18 @@ class MainActivity : ComponentActivity() {
                     startDestination = HomeScreenRoute
                 ) {
                     composable<HomeScreenRoute> {
-                        com.example.presentation.main.MainScreen(
+                        MainScreen(
                             fusedLocationProviderClient,
-                            locationPermissionLauncher
+                            locationPermissionLauncher,
+                            navController
                         )
+                    }
+                    composable("login") {
+                        LoginUI(navController)
+                    }
+
+                    composable("signup") {
+                        Signup(navController)
                     }
                 }
             }

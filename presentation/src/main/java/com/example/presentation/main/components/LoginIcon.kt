@@ -14,7 +14,7 @@ fun LoginIcon(
 ) {
     IconButton(
         modifier = modifier,
-        onClick = { /*TODO*/ }
+        onClick = onClicked
     ) {
         Icon(imageVector = Icons.Filled.Lock, contentDescription = "로그인 버튼")
     }
