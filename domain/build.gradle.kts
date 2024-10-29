@@ -12,4 +12,5 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     // 직렬화
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.javax.inject)
 }
