@@ -1,4 +1,4 @@
-package com.example.eventbookingapp
+package com.example.domain.entities.state
 
 data class IssueError(
     val exception: EXCEPTION? = null,
