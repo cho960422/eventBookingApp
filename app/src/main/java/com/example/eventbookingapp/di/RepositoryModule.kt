@@ -1,14 +1,14 @@
 package com.example.eventbookingapp.di
 
 import com.example.eventbookingapp.BuildConfig
-import com.example.eventbookingapp.data.AppDatabase
-import com.example.eventbookingapp.data.remote.EventService
-import com.example.eventbookingapp.repository.implementation.EventRepositoryImpl
-import com.example.eventbookingapp.repository.implementation.LocationRepositoryImpl
-import com.example.eventbookingapp.repository.implementation.TokenRepositoryImpl
-import com.example.eventbookingapp.repository.repository_interface.EventRepository
-import com.example.eventbookingapp.repository.repository_interface.LocationRepository
-import com.example.eventbookingapp.repository.repository_interface.TokenRepository
+import com.example.data.AppDatabase
+import com.example.data.remote.EventService
+import com.example.data.repository.EventRepositoryImpl
+import com.example.data.repository.LocationRepositoryImpl
+import com.example.data.repository.TokenRepositoryImpl
+import com.example.domain.repository.EventRepository
+import com.example.domain.repository.LocationRepository
+import com.example.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,7 +22,7 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Provides
     @Singleton
-    fun provideTokenRepository(): TokenRepository {
+    fun provideTokenRepository(): com.example.domain.repository.TokenRepository {
         /**
          * 모듈 테스트 시, Dispatchers를 변경해서 넣을 수 있음
          * 지금은 아직 방법을 몰라서 같은 Dispatchers를 넣었습니다.
@@ -32,17 +32,19 @@ object RepositoryModule {
         } else {
             Dispatchers.IO
         }
-        return TokenRepositoryImpl(dispatchers)
+        return com.example.data.repository.TokenRepositoryImpl(dispatchers)
     }
 
     @Provides
     @Singleton
-    fun provideLocationRepository(): LocationRepository = LocationRepositoryImpl()
+    fun provideLocationRepository(): com.example.domain.repository.LocationRepository =
+        com.example.data.repository.LocationRepositoryImpl()
 
     @Provides
     @Singleton
     fun provideEventRepository(
-        eventService: EventService,
-        db: AppDatabase
-    ): EventRepository = EventRepositoryImpl(service = eventService, db = db)
+        eventService: com.example.data.remote.EventService,
+        db: com.example.data.AppDatabase
+    ): com.example.domain.repository.EventRepository =
+        com.example.data.repository.EventRepositoryImpl(service = eventService, db = db)
 }

@@ -5,9 +5,9 @@ import com.example.eventbookingapp.EventBookingApplication
 import com.example.eventbookingapp.config.cacheSize
 import com.example.eventbookingapp.config.interceptors.AuthInterceptor
 import com.example.eventbookingapp.config.interceptors.LoggingInterceptor
-import com.example.eventbookingapp.data.AppDatabase
-import com.example.eventbookingapp.data.remote.EventService
-import com.example.eventbookingapp.repository.repository_interface.TokenRepository
+import com.example.data.AppDatabase
+import com.example.data.remote.EventService
+import com.example.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ import javax.inject.Singleton
 object NetworkModule {
     @Provides
     @Singleton
-    fun provideAuthInterceptor(tokenRepository: TokenRepository): AuthInterceptor {
+    fun provideAuthInterceptor(tokenRepository: com.example.domain.repository.TokenRepository): AuthInterceptor {
         return AuthInterceptor(tokenRepository)
     }
 
@@ -59,14 +59,15 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideEventService(retrofit: Retrofit): EventService = retrofit.create(EventService::class.java)
+    fun provideEventService(retrofit: Retrofit): com.example.data.remote.EventService = retrofit.create(
+        com.example.data.remote.EventService::class.java)
 
     @Provides
     @Singleton
-    fun provideAppDatabase(): AppDatabase =
+    fun provideAppDatabase(): com.example.data.AppDatabase =
         Room.databaseBuilder(
             EventBookingApplication.applicationContext(),
-            AppDatabase::class.java, "lems-database"
+            com.example.data.AppDatabase::class.java, "lems-database"
         )
             .build()
 }

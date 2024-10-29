@@ -1,7 +1,5 @@
 package com.example.domain.entities.event
 
-import com.google.gson.annotations.SerializedName
-
 data class EventDetailEntity(
     val capacity: Int,
     val date: String,

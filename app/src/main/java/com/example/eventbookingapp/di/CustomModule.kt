@@ -1,7 +1,7 @@
 package com.example.eventbookingapp.di
 
 import com.example.eventbookingapp.di.impl.LocationModuleImpl
-import com.example.eventbookingapp.repository.repository_interface.LocationRepository
+import com.example.domain.repository.LocationRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ import javax.inject.Singleton
 object CustomModule {
     @Provides
     @Singleton
-    fun provideLocationModule(locationRepository: LocationRepository): LocationModuleInterface = LocationModuleImpl(locationRepository)
+    fun provideLocationModule(locationRepository: com.example.domain.repository.LocationRepository): LocationModuleInterface = LocationModuleImpl(locationRepository)
 }

@@ -66,6 +66,10 @@ android {
 }
 
 dependencies {
+    implementation(project(":presentation"))
+    implementation(project(":domain"))
+    implementation(project(":data"))
+
     implementation(libs.androidx.core)
     implementation(libs.androidx.lifecycle.ktx)
     implementation(libs.androidx.activity.compose)
@@ -119,12 +123,9 @@ dependencies {
     implementation(libs.android)
     implementation(libs.retrofit)
     implementation(libs.okhttp)
-    implementation(libs.converter.gson)
-    implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlin.logging.jvm)
     implementation(libs.slf4j.api)
     implementation(libs.play.services.location)
-    implementation(libs.gson)
     implementation(libs.slf4j.simple)
     implementation(libs.androidx.paging.runtime)
     // alternatively - without Android dependencies for tests

@@ -12,7 +12,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.eventbookingapp.config.exceptions.NotFoundPermissionException
 import com.example.eventbookingapp.di.LocationModuleInterface
-import com.example.eventbookingapp.presentation.main.MainScreen
+import com.example.presentation.main.MainScreen
 import com.example.eventbookingapp.ui.theme.EventBookingAppTheme
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
                     startDestination = HomeScreenRoute
                 ) {
                     composable<HomeScreenRoute> {
-                        MainScreen(
+                        com.example.presentation.main.MainScreen(
                             fusedLocationProviderClient,
                             locationPermissionLauncher
                         )
