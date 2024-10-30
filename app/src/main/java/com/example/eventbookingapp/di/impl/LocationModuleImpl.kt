@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import com.example.eventbookingapp.EventBookingApplication
 import com.example.eventbookingapp.config.exceptions.NotFoundPermissionException
 import com.example.eventbookingapp.di.LocationModuleInterface
-import com.example.eventbookingapp.repository.repository_interface.LocationRepository
+import com.example.domain.repository.LocationRepository
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class LocationModuleImpl @Inject constructor(
-    private val locationRepository: LocationRepository
+    private val locationRepository: com.example.domain.repository.LocationRepository
 ): LocationModuleInterface {
 
     /**

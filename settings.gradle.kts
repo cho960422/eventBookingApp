@@ -17,4 +17,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "EventBookingApp"
 include(":app")
- 
+include(":presentation")
+include(":domain")
+include(":data")

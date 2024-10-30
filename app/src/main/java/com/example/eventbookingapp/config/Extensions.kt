@@ -3,20 +3,8 @@ package com.example.eventbookingapp.config
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.datastore.preferences.preferencesDataStore
-import mu.KotlinLogging
 import java.time.Duration
 import java.time.LocalDateTime
-
-val Context.userDataStore by preferencesDataStore(
-    name = USER_PREFERENCES_KEY
-)
-val Context.locationDataStore by preferencesDataStore(
-    name = LOCATION_PREFERENCES_KEY
-)
-val Context.searchOptionsDataStore by preferencesDataStore(
-    name = SEARCH_OPTIONS_PREFERENCES_KEY
-)
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun LocalDateTime.parseByNow(): String {
