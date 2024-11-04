@@ -3,7 +3,7 @@ package com.example.domain.entities.event
 import java.time.LocalDateTime
 
 data class EventListEntity(
-    val id: String,
+    val id: Long,
     val author: UserEntity,
     val content: String,
     val location: EventLocationEntity,

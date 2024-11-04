@@ -45,6 +45,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    testImplementation(libs.mockwebserver)
     // 직렬화
     implementation(libs.kotlinx.serialization.json)
     // test code
@@ -65,8 +66,6 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     // Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
-    // optional - Paging 3 Integration
-    implementation(libs.androidx.room.paging)
 
     implementation(libs.retrofit)
     implementation(libs.androidx.datastore.preferences)

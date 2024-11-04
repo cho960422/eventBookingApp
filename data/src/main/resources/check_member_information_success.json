@@ -1,0 +1,28 @@
+{
+  "data": {
+    "name": "하상록",
+    "birth": "1999-05-22",
+    "character": "ISTP",
+    "userEventList": [
+      {
+        "bookmarkId": 1,
+        "author": "김철수",
+        "eventName": "한강 러닝 모임",
+        "eventDate": "2024-11-04T08:42:52.506Z",
+        "capacity": 100,
+        "applicants": 50
+      }
+    ],
+    "bookmarkList": [
+      {
+        "bookmarkId": 1,
+        "author": "김철수",
+        "eventName": "한강 러닝 모임",
+        "eventDate": "2024-11-04T08:42:52.506Z",
+        "capacity": 100,
+        "applicants": 50
+      }
+    ]
+  },
+  "message": "수정, 조회, 삭제, 등록 성공!"
+}

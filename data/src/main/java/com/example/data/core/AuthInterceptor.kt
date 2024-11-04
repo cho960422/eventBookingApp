@@ -1,6 +1,5 @@
 package com.example.data.core
 
-import com.example.eventbookingapp.config.headerTokenKey
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response

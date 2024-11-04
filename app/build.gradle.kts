@@ -107,31 +107,17 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-
-    // For Room
-    implementation(libs.androidx.room.runtime)
-    ksp(libs.androidx.room.compiler)
-    // Kotlin Extensions and Coroutines support for Room
-    implementation(libs.androidx.room.ktx)
     // optional - Paging 3 Integration
     implementation(libs.androidx.room.paging)
 
-    implementation(libs.retrofit)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.material)
 
     implementation(libs.android)
-    implementation(libs.retrofit)
-    implementation(libs.okhttp)
     implementation(libs.kotlin.logging.jvm)
     implementation(libs.slf4j.api)
     implementation(libs.play.services.location)
     implementation(libs.slf4j.simple)
-    implementation(libs.androidx.paging.runtime)
-    // alternatively - without Android dependencies for tests
-    testImplementation(libs.androidx.paging.common)
-    // optional - Jetpack Compose integration
-    implementation(libs.androidx.paging.compose)
     implementation(libs.android)
 }
 

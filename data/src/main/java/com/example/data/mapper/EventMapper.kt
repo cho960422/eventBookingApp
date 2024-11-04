@@ -42,7 +42,7 @@ object EventMapper {
     @RequiresApi(Build.VERSION_CODES.O)
     fun eventDetailDtoToListRoomEntity(dto: EventDetailDto): EventListRoomEntity = with(dto) {
         return EventListRoomEntity(
-            id = "",
+            id = 1,
             author = eventUserDtoToEntity(author),
             content = content,
             location = EventLocationEntity(

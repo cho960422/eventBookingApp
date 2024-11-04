@@ -1,0 +1,8 @@
+{
+  "error": [
+    {
+      "field": "name",
+      "message": "null 값은 사용 할수 없습니다."
+    }
+  ]
+}

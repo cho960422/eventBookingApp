@@ -9,7 +9,7 @@ import java.time.LocalDateTime
 
 @Entity(tableName = "events")
 data class EventListRoomEntity(
-    @PrimaryKey val id: String,
+    @PrimaryKey val id: Long,
     @ColumnInfo(name = "author") val author: UserEntity,
     @ColumnInfo(name = "content") val content: String,
     @ColumnInfo(name = "location") val location: EventLocationEntity,

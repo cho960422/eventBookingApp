@@ -9,12 +9,12 @@ class LoggingInterceptor : Interceptor {
         val request = chain.request()
 
         Log.d("API CALL", "-------------------------------------------------------------\n")
-        Log.d("API CALL", "Request URL\n${request.url}\n\n")
-        Log.d("API CALL", "Request Body\n${request.body}\n\n")
+        Log.d("API CALL", "Request URL\n${request.url()}\n\n")
+        Log.d("API CALL", "Request Body\n${request.body()}\n\n")
 
         val response = chain.proceed(request)
 
-        Log.d("API CALL", "Response body about ${request.url}\n${response.body}\n\n")
+        Log.d("API CALL", "Response body about ${request.url()}\n${response.body()}\n\n")
         Log.d("API CALL", "-----------------------------END----------------------------\n")
 
         return response

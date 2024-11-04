@@ -13,7 +13,7 @@ import javax.inject.Inject
 class GetEventListUseCase @Inject constructor(
     private val eventRepository: EventRepository
 ) {
-    operator fun invoke(query: String): Flow<Response<PagingResult<Int, EventListEntity>>> = flow {
+    operator fun invoke(query: String): Flow<Response<List<EventListEntity>>> = flow {
         emit(Response.Loading())
 
         try {

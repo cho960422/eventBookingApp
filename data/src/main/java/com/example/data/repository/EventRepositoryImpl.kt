@@ -2,21 +2,16 @@ package com.example.data.repository
 
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.paging.ExperimentalPagingApi
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingData
 import com.example.data.core.ApplicationContextProvider
 import com.example.data.core.categoryKey
 import com.example.data.core.searchOptionsDataStore
 import com.example.data.core.sortByKey
 import com.example.data.model.AppDatabase
-import com.example.data.model.dto.event.EventDetailDto
-import com.example.data.model.dto.event.EventListRoomEntity
-import com.example.data.model.dto.event.EventWriteDto
-import com.example.data.paging_source.HomeEventPagingSource
-import com.example.data.remote_mediator.HomeEventRemoteMediator
 import com.example.data.model.remote.EventService
+import com.example.domain.entities.event.EventDetailEntity
+import com.example.domain.entities.event.EventListEntity
+import com.example.domain.entities.event.EventWriteRequestEntity
+import com.example.domain.entities.event.SearchOptions
 import com.example.domain.repository.EventRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -36,24 +31,12 @@ class EventRepositoryImpl @Inject constructor(
     private val context = applicationContextProvider.getContext()
     private val pref = context.searchOptionsDataStore
 
-    override suspend fun writeEvent(dto: EventWriteDto): Boolean {
-        return withContext(ioDispatcher) {
-            val response = service.submitEvent(dto)
-
-            response.isSuccessful
-        }
+    override suspend fun writeEvent(request: EventWriteRequestEntity): Boolean {
+        TODO("Not yet implemented")
     }
 
-    override suspend fun getEvent(id: String): EventDetailDto {
-        return withContext(ioDispatcher) {
-            val response = service.getSingleEvent(id.toInt())
-
-            if (response.isSuccessful && response.body()?.data != null) {
-                response.body()!!.data!!
-            } else {
-                throw Exception()
-            }
-        }
+    override suspend fun getEvent(id: String): EventDetailEntity {
+        TODO("Not yet implemented")
     }
 
     override suspend fun deleteEvent(id: String): Boolean {
@@ -64,12 +47,8 @@ class EventRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun patchEvent(dto: EventWriteDto): Boolean {
-        return withContext(ioDispatcher) {
-            val response = service.patchEvent(dto)
-
-            response.isSuccessful
-        }
+    override suspend fun patchEvent(request: EventWriteRequestEntity): Boolean {
+        TODO("Not yet implemented")
     }
 
     override suspend fun editCategoryOptions(category: Int) {
@@ -90,7 +69,7 @@ class EventRepositoryImpl @Inject constructor(
             val category = it[intPreferencesKey(categoryKey)]
             val sortBy = it[intPreferencesKey(sortByKey)]
             flow {
-                val obj = com.example.domain.entities.event.SearchOptions(
+                val obj = SearchOptions(
                     if (category == -1) null else category, if (sortBy == -1) null else sortBy
                 )
 
@@ -99,15 +78,7 @@ class EventRepositoryImpl @Inject constructor(
         }
     }
 
-    @OptIn(ExperimentalPagingApi::class)
-    override fun getEventList(query:String): Flow<PagingData<EventListRoomEntity>> {
-        val pager = Pager(
-            config = PagingConfig(pageSize = 30),
-            remoteMediator = HomeEventRemoteMediator(service, db, query)
-        ) {
-            HomeEventPagingSource(db, query)
-        }
-
-        return pager.flow
+    override fun getEventList(query:String): List<EventListEntity> {
+        return listOf()
     }
 }
