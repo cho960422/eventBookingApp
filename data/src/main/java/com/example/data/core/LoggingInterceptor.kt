@@ -1,4 +1,4 @@
-package com.example.eventbookingapp.config.interceptors
+package com.example.data.core
 
 import android.util.Log
 import okhttp3.Interceptor

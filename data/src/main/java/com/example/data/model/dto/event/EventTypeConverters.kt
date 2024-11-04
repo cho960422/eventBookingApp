@@ -1,4 +1,4 @@
-package com.example.data.dto.event
+package com.example.data.model.dto.event
 
 import android.os.Build
 import androidx.annotation.RequiresApi

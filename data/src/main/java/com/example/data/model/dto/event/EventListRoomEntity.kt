@@ -1,4 +1,4 @@
-package com.example.data.dto.event
+package com.example.data.model.dto.event
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

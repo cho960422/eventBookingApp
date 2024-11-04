@@ -1,8 +1,8 @@
-package com.example.data.remote
+package com.example.data.model.remote
 
-import com.example.data.dto.base.BaseResponse
-import com.example.data.dto.event.EventDetailDto
-import com.example.data.dto.event.EventWriteDto
+import com.example.data.model.dto.base.BaseResponse
+import com.example.data.model.dto.event.EventDetailDto
+import com.example.data.model.dto.event.EventWriteDto
 import retrofit2.Response
 import retrofit2.http.DELETE
 import retrofit2.http.GET

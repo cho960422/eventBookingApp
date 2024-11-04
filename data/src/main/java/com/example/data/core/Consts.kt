@@ -7,3 +7,5 @@ const val tokenKey = "token"
 const val locationKey = "location"
 const val categoryKey = "category"
 const val sortByKey = "sortBy"
+const val cacheSize: Long = 3L * 1024 * 1024
+const val headerTokenKey = "Authorization"

@@ -13,5 +13,5 @@ import javax.inject.Singleton
 object CustomModule {
     @Provides
     @Singleton
-    fun provideLocationModule(locationRepository: com.example.domain.repository.LocationRepository): LocationModuleInterface = LocationModuleImpl(locationRepository)
+    fun provideLocationModule(locationRepository: LocationRepository): LocationModuleInterface = LocationModuleImpl(locationRepository)
 }

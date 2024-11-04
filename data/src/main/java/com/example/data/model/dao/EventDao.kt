@@ -1,9 +1,9 @@
-package com.example.data.dao
+package com.example.data.model.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.data.dto.event.EventListRoomEntity
+import com.example.data.model.dto.event.EventListRoomEntity
 
 @Dao
 interface EventDao {

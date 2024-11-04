@@ -1,14 +1,10 @@
 package com.example.eventbookingapp.di
 
+import com.example.data.core.ApplicationContextProvider
+import com.example.data.model.AppDatabase
 import com.example.eventbookingapp.BuildConfig
-import com.example.data.AppDatabase
-import com.example.data.remote.EventService
+import com.example.data.model.remote.EventService
 import com.example.data.repository.EventRepositoryImpl
-import com.example.data.repository.LocationRepositoryImpl
-import com.example.data.repository.TokenRepositoryImpl
-import com.example.domain.repository.EventRepository
-import com.example.domain.repository.LocationRepository
-import com.example.domain.repository.TokenRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -43,8 +39,13 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideEventRepository(
-        eventService: com.example.data.remote.EventService,
-        db: com.example.data.AppDatabase
+        eventService: EventService,
+        db: AppDatabase,
+        applicationContextProvider: ApplicationContextProvider
     ): com.example.domain.repository.EventRepository =
-        com.example.data.repository.EventRepositoryImpl(service = eventService, db = db)
+        EventRepositoryImpl(
+            service = eventService,
+            db = db,
+            applicationContextProvider = applicationContextProvider
+        )
 }

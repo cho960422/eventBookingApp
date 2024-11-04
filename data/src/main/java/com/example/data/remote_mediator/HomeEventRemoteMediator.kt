@@ -7,24 +7,24 @@ import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.room.withTransaction
-import com.example.data.AppDatabase
-import com.example.data.dto.event.EventListRoomEntity
 import com.example.data.mapper.EventMapper
-import com.example.data.remote.EventService
+import com.example.data.model.AppDatabase
+import com.example.data.model.dto.event.EventListRoomEntity
+import com.example.data.model.remote.EventService
 import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
 class HomeEventRemoteMediator @Inject constructor(
-    private val eventService: com.example.data.remote.EventService,
-    private val db: com.example.data.AppDatabase,
+    private val eventService: EventService,
+    private val db: AppDatabase,
     private val query: String
-): RemoteMediator<Int, com.example.data.dto.event.EventListRoomEntity>() {
+): RemoteMediator<Int, EventListRoomEntity>() {
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun load(
         loadType: LoadType,
-        state: PagingState<Int, com.example.data.dto.event.EventListRoomEntity>
+        state: PagingState<Int, EventListRoomEntity>
     ): MediatorResult {
         return try {
             val storage = db.eventDao()

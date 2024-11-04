@@ -2,10 +2,10 @@ package com.example.data.mapper
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.example.data.dto.event.EventDetailDto
-import com.example.data.dto.event.EventListRoomEntity
-import com.example.data.dto.event.EventUserDto
-import com.example.data.dto.event.EventWriteDto
+import com.example.data.model.dto.event.EventDetailDto
+import com.example.data.model.dto.event.EventListRoomEntity
+import com.example.data.model.dto.event.EventUserDto
+import com.example.data.model.dto.event.EventWriteDto
 import com.example.domain.entities.event.EventDetailEntity
 import com.example.domain.entities.event.EventLocationEntity
 import com.example.domain.entities.event.EventWriteRequestEntity

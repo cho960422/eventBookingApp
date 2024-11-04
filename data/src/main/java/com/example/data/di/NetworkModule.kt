@@ -1,13 +1,12 @@
-package com.example.eventbookingapp.di
+package com.example.data.di
 
 import androidx.room.Room
-import com.example.eventbookingapp.EventBookingApplication
-import com.example.eventbookingapp.config.cacheSize
-import com.example.eventbookingapp.config.interceptors.AuthInterceptor
-import com.example.eventbookingapp.config.interceptors.LoggingInterceptor
-import com.example.data.AppDatabase
-import com.example.data.remote.EventService
-import com.example.domain.repository.TokenRepository
+import com.example.data.core.ApplicationContextProvider
+import com.example.data.core.AuthInterceptor
+import com.example.data.core.LoggingInterceptor
+import com.example.data.core.cacheSize
+import com.example.data.model.AppDatabase
+import com.example.data.model.remote.EventService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -29,13 +28,13 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(authInterceptor: AuthInterceptor): OkHttpClient {
+    fun provideOkHttpClient(authInterceptor: AuthInterceptor, applicationContextProvider: ApplicationContextProvider): OkHttpClient {
         /**
         Set File application cache file directory
         size : 3MB
          */
         val cache = Cache(
-            EventBookingApplication.applicationContext().cacheDir,
+            applicationContextProvider.getContext().cacheDir,
             cacheSize
         )
 
@@ -59,15 +58,15 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideEventService(retrofit: Retrofit): com.example.data.remote.EventService = retrofit.create(
-        com.example.data.remote.EventService::class.java)
+    fun provideEventService(retrofit: Retrofit): EventService = retrofit.create(
+        EventService::class.java)
 
     @Provides
     @Singleton
-    fun provideAppDatabase(): com.example.data.AppDatabase =
+    fun provideAppDatabase(applicationContextProvider: ApplicationContextProvider): AppDatabase =
         Room.databaseBuilder(
-            EventBookingApplication.applicationContext(),
-            com.example.data.AppDatabase::class.java, "lems-database"
+            applicationContextProvider.getContext(),
+            AppDatabase::class.java, "lems-database"
         )
             .build()
 }

@@ -10,8 +10,13 @@ import com.example.data.core.ApplicationContextProvider
 import com.example.data.core.categoryKey
 import com.example.data.core.searchOptionsDataStore
 import com.example.data.core.sortByKey
+import com.example.data.model.AppDatabase
+import com.example.data.model.dto.event.EventDetailDto
+import com.example.data.model.dto.event.EventListRoomEntity
+import com.example.data.model.dto.event.EventWriteDto
 import com.example.data.paging_source.HomeEventPagingSource
 import com.example.data.remote_mediator.HomeEventRemoteMediator
+import com.example.data.model.remote.EventService
 import com.example.domain.repository.EventRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -23,15 +28,15 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class EventRepositoryImpl @Inject constructor(
-    private val service: com.example.data.remote.EventService,
-    private val db: com.example.data.AppDatabase,
+    private val service: EventService,
+    private val db: AppDatabase,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO,
     private val applicationContextProvider: ApplicationContextProvider
 ): EventRepository {
     private val context = applicationContextProvider.getContext()
     private val pref = context.searchOptionsDataStore
 
-    override suspend fun writeEvent(dto: com.example.data.dto.event.EventWriteDto): Boolean {
+    override suspend fun writeEvent(dto: EventWriteDto): Boolean {
         return withContext(ioDispatcher) {
             val response = service.submitEvent(dto)
 
@@ -39,7 +44,7 @@ class EventRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getEvent(id: String): com.example.data.dto.event.EventDetailDto {
+    override suspend fun getEvent(id: String): EventDetailDto {
         return withContext(ioDispatcher) {
             val response = service.getSingleEvent(id.toInt())
 
@@ -59,7 +64,7 @@ class EventRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun patchEvent(dto: com.example.data.dto.event.EventWriteDto): Boolean {
+    override suspend fun patchEvent(dto: EventWriteDto): Boolean {
         return withContext(ioDispatcher) {
             val response = service.patchEvent(dto)
 
@@ -95,7 +100,7 @@ class EventRepositoryImpl @Inject constructor(
     }
 
     @OptIn(ExperimentalPagingApi::class)
-    override fun getEventList(query:String): Flow<PagingData<com.example.data.dto.event.EventListRoomEntity>> {
+    override fun getEventList(query:String): Flow<PagingData<EventListRoomEntity>> {
         val pager = Pager(
             config = PagingConfig(pageSize = 30),
             remoteMediator = HomeEventRemoteMediator(service, db, query)
