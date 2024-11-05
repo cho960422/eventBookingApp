@@ -1,5 +1,6 @@
 package com.example.data.mapper
 
+import android.location.Location
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.example.data.model.dto.event.EventDetailDto
@@ -10,6 +11,7 @@ import com.example.domain.entities.event.EventDetailEntity
 import com.example.domain.entities.event.EventLocationEntity
 import com.example.domain.entities.event.EventWriteRequestEntity
 import com.example.domain.entities.event.UserEntity
+import com.example.domain.entities.location.CurrentLocationEntity
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -58,6 +60,13 @@ object EventMapper {
 
     private fun contentDtoToEntity(content: String) :String {
         return content
+    }
+
+    fun Location.toCurrentLocationEntity(): CurrentLocationEntity {
+        return CurrentLocationEntity(
+            this.latitude,
+            this.longitude
+        )
     }
 
     fun eventUserDtoToEntity(user: EventUserDto) : UserEntity {
