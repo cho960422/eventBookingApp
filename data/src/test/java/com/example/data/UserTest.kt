@@ -3,7 +3,7 @@ package com.example.data
 import com.example.data.core.AuthInterceptor
 import com.example.data.model.dto.user.EventUserListDto
 import com.example.data.model.remote.UserService
-import com.example.domain.model.User
+import com.example.domain.entities.user.User
 import com.example.domain.repository.TokenRepository
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
