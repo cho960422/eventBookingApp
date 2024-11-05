@@ -3,7 +3,7 @@ package com.example.data.model.dto.event
 import com.google.gson.annotations.SerializedName
 
 data class EventDetailDto(
-    @SerializedName("id") val id: String,
+    @SerializedName("id") val id: Long,
     @SerializedName("capacity") val capacity: Int,
     @SerializedName("date") val date: String,
     @SerializedName("latitude") val latitude: Double,
