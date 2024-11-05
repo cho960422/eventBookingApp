@@ -2,9 +2,9 @@ package com.example.data.model.remote
 
 import com.example.data.model.dto.base.BaseResponse
 import com.example.data.model.dto.mypage.MyPageDto
-import com.example.data.model.dto.user.EditProfileRequestDto
+import com.example.data.model.dto.user.PatchProfileRequestDto
 import com.example.data.model.dto.user.EventUserListDto
-import com.example.domain.model.User
+import com.example.domain.entities.user.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -17,15 +17,15 @@ interface UserService {
     @POST("/users/register")
     suspend fun signUp(
         @Body request: User
-    ): Response<BaseResponse<User>>
+    ): Response<BaseResponse<Nothing>>
 
     @GET("/users")
     suspend fun getUserInformation(): Response<BaseResponse<MyPageDto>>
 
     @PATCH("/users")
     suspend fun patchUserInformation(
-        @Body requestBody: EditProfileRequestDto
-    ): Response<BaseResponse<Any>>
+        @Body requestBody: PatchProfileRequestDto
+    ): Response<BaseResponse<Nothing>>
 
     @GET("/users/{eventId}")
     suspend fun getUsersInEvent(
