@@ -7,6 +7,9 @@ import android.location.Location
 import android.os.Looper
 import android.util.Log
 import androidx.core.content.ContextCompat
+import com.example.data.mapper.EventMapper
+import com.example.data.mapper.EventMapper.toCurrentLocationEntity
+import com.example.domain.entities.location.CurrentLocationEntity
 import com.example.eventbookingapp.EventBookingApplication
 import com.example.eventbookingapp.config.exceptions.NotFoundPermissionException
 import com.example.eventbookingapp.di.LocationModuleInterface
@@ -29,14 +32,15 @@ class LocationModuleImpl @Inject constructor(
      */
     @SuppressLint("MissingPermission")
     override fun syncCurrentLocation(client: FusedLocationProviderClient) {
-        val locationRequest = LocationRequest.Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10000L)
+        val locationRequest = LocationRequest
+            .Builder(Priority.PRIORITY_BALANCED_POWER_ACCURACY, 10000L)
             .build()
 
         val locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 locationResult ?: return
                 for (location in locationResult.locations){
-                    locationRepository.updateCurrentLocation(location)
+                    locationRepository.updateCurrentLocation(location.toCurrentLocationEntity())
                     Log.d("latlng", "latlng :: latitude - ${location.latitude}, longitude - ${location.longitude}")
                     client.removeLocationUpdates(this)
                 }
@@ -49,7 +53,7 @@ class LocationModuleImpl @Inject constructor(
      * 현재 위치 정보를 Flow로 받을 수 있도록 구조화
      * Flow의 데이터가 바뀔 때 데이터를 갱신할 수 있도록 하기
      */
-    override fun getCurrentLocation(): Flow<Location?> {
+    override fun getCurrentLocation(): Flow<CurrentLocationEntity?> {
         return locationRepository.getCurrentLocation()
     }
 
